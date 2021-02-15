@@ -9,9 +9,9 @@ const PostActions = ({ id, handlerAnimDel }) => {
   const { posts, onFormSubmit } = useContext(PostsContext);
   const [form, setForm] = useState(false);
 
-  const handlerClickDelete = (id) => {
-    handlerAnimDel && handlerAnimDel(id);
-    axios
+  const handlerClickDelete = async (id) => {
+    await handlerAnimDel(id);
+    await axios
       .delete(`/api/v1/posts/${id}`)
       .then(() => {
         onFormSubmit([]);

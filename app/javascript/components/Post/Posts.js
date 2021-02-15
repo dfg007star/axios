@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Fade from "react-reveal/Fade";
 import Bounce from "react-reveal/Bounce";
 
 import PostActions from "./Post_actions";
@@ -30,7 +29,7 @@ const Posts = ({ posts }) => {
             {
               if (item.id === newItem && !animDel) {
                 return (
-                  <Fade>
+                  <Bounce left>
                     <li className="list-group-item" key={item.id}>
                       <Post item={item} />
                       <PostActions
@@ -38,14 +37,14 @@ const Posts = ({ posts }) => {
                         handlerAnimDel={handlerAnimDel}
                       />
                     </li>
-                  </Fade>
+                  </Bounce>
                 );
               }
             }
             {
               if (item.id === animDel) {
                 console.log("del");
-                <Bounce left>
+                <Bounce right>
                   <li className="list-group-item" key={item.id}>
                     <Post item={item} />
                     <PostActions id={item.id} handlerAnimDel={handlerAnimDel} />
