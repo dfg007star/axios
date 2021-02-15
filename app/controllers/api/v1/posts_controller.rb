@@ -15,6 +15,7 @@ module Api
 
             def create 
                 post = Post.new(post_params)
+                flash.now[:notice] = "New post create!"
                 if post.save
                     render json: PostSerializer.new(post).serialized_json
                 else 

@@ -28,7 +28,7 @@ const Posts = ({ posts }) => {
         <ul className="list-group list-group-flush">
           {posts.map((item, idx) => {
             {
-              if (item.id === newItem) {
+              if (item.id === newItem && !animDel) {
                 return (
                   <Fade>
                     <li className="list-group-item" key={item.id}>
@@ -44,17 +44,13 @@ const Posts = ({ posts }) => {
             }
             {
               if (item.id === animDel) {
-                return (
-                  <Bounce left>
-                    <li className="list-group-item" key={item.id}>
-                      <Post item={item} />
-                      <PostActions
-                        id={item.id}
-                        handlerAnimDel={handlerAnimDel}
-                      />
-                    </li>
-                  </Bounce>
-                );
+                console.log("del");
+                <Bounce left>
+                  <li className="list-group-item" key={item.id}>
+                    <Post item={item} />
+                    <PostActions id={item.id} handlerAnimDel={handlerAnimDel} />
+                  </li>
+                </Bounce>;
               }
             }
             return (

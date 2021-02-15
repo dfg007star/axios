@@ -10,10 +10,10 @@ const PostActions = ({ id, handlerAnimDel }) => {
   const [form, setForm] = useState(false);
 
   const handlerClickDelete = (id) => {
+    handlerAnimDel && handlerAnimDel(id);
     axios
       .delete(`/api/v1/posts/${id}`)
       .then(() => {
-        handlerAnimDel && handlerAnimDel(id);
         onFormSubmit([]);
       })
       .catch((resp) => console.log(resp));

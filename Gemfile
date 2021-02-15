@@ -56,3 +56,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'fast_jsonapi'
 gem 'bootstrap', '~> 4.0.0'
+gem 'react-rails'
