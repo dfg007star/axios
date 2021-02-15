@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  database: axios_dev
+  password: 1111
+  pool: 5
+  timeout: 5000
+  username: postgres
+production:
+  adapter: postgresql
+  database: <%= ENV['DATABASE_URL'] %>
+  pool: 5
+  timeout: 5000
+test:
+  adapter: postgresql
+  database: axios_dev
+  pool: 5
+  timeout: 5000
