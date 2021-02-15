@@ -15,9 +15,9 @@ const PostForm = ({ handlerAnim }) => {
       .then((resp) => {
         const newArr = [...posts, resp.data.data];
         onFormSubmit(newArr);
+        handlerAnim && handlerAnim(resp.data.data.id);
       })
       .catch((resp) => console.log(resp));
-    handlerAnim && handlerAnim();
     setValue("");
   };
 

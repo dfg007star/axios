@@ -1,16 +1,24 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Fade from "react-reveal/Fade";
-import Slide from "react-reveal/Slide";
+import Bounce from "react-reveal/Bounce";
 
 import PostActions from "./Post_actions";
 import PostForm from "./Post_form.js";
 import Post from "./Post";
 
 const Posts = ({ posts }) => {
-  const handlerAnim = () => {};
+  const [animDel, setAnimDel] = useState(null);
+  const [newItem, setnewItem] = useState(null);
+
+  useEffect(() => {
+    setnewItem(null);
+    setAnimDel(null);
+  }, [animDel, animDel]);
+  const handlerAnim = (id) => {
+    setnewItem(id);
+  };
   const handlerAnimDel = (id) => {
-    const idDel = id;
-    return idDel;
+    setAnimDel(id);
   };
 
   return (
@@ -20,33 +28,37 @@ const Posts = ({ posts }) => {
         <ul className="list-group list-group-flush">
           {posts.map((item, idx) => {
             {
-              if (idx === 0 && handlerAnim) {
+              if (item.id === newItem) {
                 return (
                   <Fade>
-                    <li className="list-group-item" key={item.attributes.title}>
+                    <li className="list-group-item" key={item.id}>
                       <Post item={item} />
-                      <PostActions id={item.id} />
+                      <PostActions
+                        id={item.id}
+                        handlerAnimDel={handlerAnimDel}
+                      />
                     </li>
                   </Fade>
                 );
               }
             }
             {
-              if (item.id === handlerAnimDel) {
-                console.log("delete");
+              if (item.id === animDel) {
                 return (
-                  <Slide left>
-                    <li className="list-group-item" key={item.attributes.title}>
+                  <Bounce left>
+                    <li className="list-group-item" key={item.id}>
                       <Post item={item} />
-                      <PostActions id={item.id} />
+                      <PostActions
+                        id={item.id}
+                        handlerAnimDel={handlerAnimDel}
+                      />
                     </li>
-                  </Slide>
+                  </Bounce>
                 );
               }
             }
-
             return (
-              <li className="list-group-item" key={item.attributes.title}>
+              <li className="list-group-item" key={item.id}>
                 <Post item={item} />
                 <PostActions id={item.id} handlerAnimDel={handlerAnimDel} />
               </li>

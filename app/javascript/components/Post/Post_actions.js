@@ -12,9 +12,11 @@ const PostActions = ({ id, handlerAnimDel }) => {
   const handlerClickDelete = (id) => {
     axios
       .delete(`/api/v1/posts/${id}`)
-      .then(() => onFormSubmit([]))
+      .then(() => {
+        handlerAnimDel && handlerAnimDel(id);
+        onFormSubmit([]);
+      })
       .catch((resp) => console.log(resp));
-    handlerAnimDel && handlerAnimDel(id);
   };
 
   const formEdit = () => {
@@ -22,14 +24,16 @@ const PostActions = ({ id, handlerAnimDel }) => {
   };
 
   return (
-    <div class="d-flex flex-row justify-content-between align-items-start">
-      <div class="d-flex align-items-center mb-2">
+    <div className="d-flex flex-row justify-content-between align-items-start">
+      <div className="d-flex align-items-center mb-2">
         <button className="btn btn-primary mr-2" onClick={formEdit}>
           {form ? "Hide" : "Show"} Edit
         </button>
         <button
           className="btn btn-danger"
-          onClick={() => handlerClickDelete(id)}
+          onClick={() => {
+            handlerClickDelete(id);
+          }}
           disabled={form}
         >
           Delete

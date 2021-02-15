@@ -17,7 +17,7 @@ const PostSmallForm = ({ id }) => {
   };
 
   return (
-    <div class="d-flex align-items-center">
+    <div className="d-flex align-items-center">
       <form onSubmit={handleSubmit}>
         <label>
           <input
