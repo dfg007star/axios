@@ -23,6 +23,9 @@ const PostActions = ({ id }) => {
   const formEdit = () => {
     setForm(!form);
   };
+  const handleForm = () => {
+    setForm(!form);
+  };
 
   return (
     <div className="d-flex flex-row justify-content-between align-items-start">
@@ -41,7 +44,7 @@ const PostActions = ({ id }) => {
         </button>
       </div>
       <Bounce right when={form}>
-        {form && <PostSmallForm id={id} />}
+        {form && <PostSmallForm id={id} handleForm={handleForm} />}
       </Bounce>
     </div>
   );

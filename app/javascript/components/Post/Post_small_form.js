@@ -3,9 +3,10 @@ import axios from "axios";
 
 import { PostsContext } from "../context/Post_context";
 
-const PostSmallForm = ({ id }) => {
+const PostSmallForm = ({ id, handleForm }) => {
   const PostContext = useContext(PostsContext);
   const [value, setValue] = useState("");
+  const [show, setShow] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,6 +14,7 @@ const PostSmallForm = ({ id }) => {
       .patch(`/api/v1/posts/${id}`, { title: value })
       .then((resp) => PostContext.onFormSubmit([]))
       .catch((resp) => console.log(resp));
+    handleForm && handleForm();
     setValue("");
   };
 
