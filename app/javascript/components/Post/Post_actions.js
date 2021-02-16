@@ -29,7 +29,7 @@ const PostActions = ({ id }) => {
 
   return (
     <div className="d-flex flex-row justify-content-between align-items-start">
-      <div className="d-flex align-items-center mb-2">
+      <div className="d-flex align-items-center mb-3">
         <button className="btn btn-primary mr-2" onClick={formEdit}>
           {form ? "Hide" : "Show"} Edit
         </button>

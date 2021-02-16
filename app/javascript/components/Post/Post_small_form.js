@@ -12,7 +12,10 @@ const PostSmallForm = ({ id, handleForm }) => {
     event.preventDefault();
     axios
       .patch(`/api/v1/posts/${id}`, { title: value })
-      .then((resp) => PostContext.onFormSubmit([]))
+      .then(() => {
+        const newArr = PostContext.posts.filter((item) => item.id !== id);
+        PostContext.onFormSubmit(newArr);
+      })
       .catch((resp) => console.log(resp));
     handleForm && handleForm();
     setValue("");
