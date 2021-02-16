@@ -1,20 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import Bounce from "react-reveal/Bounce";
 
 import { PostsContext } from "../context/Post_context";
 import PostSmallForm from "./Post_small_form";
 
-const PostActions = ({ id, handlerAnimDel }) => {
+const PostActions = ({ id }) => {
   const { posts, onFormSubmit } = useContext(PostsContext);
   const [form, setForm] = useState(false);
+  console.log("urlll", posts);
 
-  const handlerClickDelete = async (id) => {
-    await handlerAnimDel(id);
-    await axios
+  const handlerClickDelete = (id) => {
+    axios
       .delete(`/api/v1/posts/${id}`)
       .then(() => {
-        onFormSubmit([]);
+        const newArr = posts.filter((item) => item.id !== id);
+        onFormSubmit(newArr);
       })
       .catch((resp) => console.log(resp));
   };

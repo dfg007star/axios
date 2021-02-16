@@ -8,7 +8,7 @@ class FlashMessages extends React.Component {
     return (
       <div>
         {this.state.messages.map((message) => (
-          <Alert key={message.id} message={message} />
+          <h2 key={message.id}>{message}</h2>
         ))}
       </div>
     );

@@ -17,7 +17,7 @@ const PostSmallForm = ({ id }) => {
   };
 
   return (
-    <div className="d-flex align-items-center">
+    <div className="d-flex align-items-baseline">
       <form onSubmit={handleSubmit}>
         <label>
           <input
@@ -27,7 +27,7 @@ const PostSmallForm = ({ id }) => {
             onChange={(event) => setValue(event.target.value)}
           ></input>
         </label>
-        <button className="btn btn-primary ml-2" type="submit">
+        <button className="btn btn-primary ml-2 mb-1" type="submit">
           Submit
         </button>
       </form>

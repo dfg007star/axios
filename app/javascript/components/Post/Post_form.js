@@ -9,7 +9,6 @@ const PostForm = ({ handlerAnim }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     axios
       .post(`/api/v1/posts`, { title: value })
       .then((resp) => {

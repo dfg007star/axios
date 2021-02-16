@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Bounce from "react-reveal/Bounce";
+import React, { useState } from "react";
 
-import PostActions from "./Post_actions";
 import PostForm from "./Post_form.js";
 import Post from "./Post";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const Posts = ({ posts }) => {
-  const [animDel, setAnimDel] = useState(null);
   const [newItem, setnewItem] = useState(null);
-
-  useEffect(() => {
-    setnewItem(null);
-    setAnimDel(null);
-  }, [animDel, animDel]);
   const handlerAnim = (id) => {
     setnewItem(id);
-  };
-  const handlerAnimDel = (id) => {
-    setAnimDel(id);
   };
 
   return (
@@ -25,40 +15,13 @@ const Posts = ({ posts }) => {
       <div className="col">
         <PostForm handlerAnim={handlerAnim} />
         <ul className="list-group list-group-flush">
-          {posts.map((item, idx) => {
-            {
-              if (item.id === newItem && !animDel) {
-                return (
-                  <Bounce left>
-                    <li className="list-group-item" key={item.id}>
-                      <Post item={item} />
-                      <PostActions
-                        id={item.id}
-                        handlerAnimDel={handlerAnimDel}
-                      />
-                    </li>
-                  </Bounce>
-                );
-              }
-            }
-            {
-              if (item.id === animDel) {
-                console.log("del");
-                <Bounce right>
-                  <li className="list-group-item" key={item.id}>
-                    <Post item={item} />
-                    <PostActions id={item.id} handlerAnimDel={handlerAnimDel} />
-                  </li>
-                </Bounce>;
-              }
-            }
-            return (
-              <li className="list-group-item" key={item.id}>
+          <TransitionGroup>
+            {posts.map((item) => (
+              <CSSTransition key={item.id} timeout={600} classNames="move" exit>
                 <Post item={item} />
-                <PostActions id={item.id} handlerAnimDel={handlerAnimDel} />
-              </li>
-            );
-          })}
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
         </ul>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PostActions from "./Post_actions";
 
 const Post = ({ item }) => {
   const [show, setShow] = useState(false);
@@ -7,16 +8,17 @@ const Post = ({ item }) => {
   };
 
   return (
-    <>
-      <a
+    <li className="list-group-item" key={item.id}>
+      <h2
         onClick={() => {
           handlerClick();
         }}
       >
-        <h2>{item.attributes.title}</h2>
-      </a>
+        {item.attributes.title}
+      </h2>
       {show && <h2>{(item.id, item.type)}</h2>}
-    </>
+      <PostActions id={item.id} />
+    </li>
   );
 };
 

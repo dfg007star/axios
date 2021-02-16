@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Posts from "./Post/Posts";
 import { PostsContext } from "./context/Post_context";
+import Fade from "react-reveal/Fade";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -20,9 +21,11 @@ const App = () => {
 
   return (
     <PostsContext.Provider value={{ posts, onFormSubmit: handlerSubmit }}>
-      <div className="container root">
-        <Posts posts={posts} />
-      </div>
+      <Fade top>
+        <div className="container root">
+          <Posts posts={posts} />
+        </div>
+      </Fade>
     </PostsContext.Provider>
   );
 };
