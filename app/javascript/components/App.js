@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import Posts from "./Post/Posts";
-import { PostsContext } from "./context/Post_context";
+import Posts from "./post/Posts";
 import Fade from "react-reveal/Fade";
+import { PostsContext } from "./context/Post_context";
 
 const App = () => {
   const [posts, setPosts] = useState([]);

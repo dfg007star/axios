@@ -6,7 +6,6 @@ import { PostsContext } from "../context/Post_context";
 const PostSmallForm = ({ id, handleForm }) => {
   const PostContext = useContext(PostsContext);
   const [value, setValue] = useState("");
-  const [show, setShow] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();

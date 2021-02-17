@@ -4,6 +4,7 @@ import Bounce from "react-reveal/Bounce";
 
 import { PostsContext } from "../context/Post_context";
 import PostSmallForm from "./Post_small_form";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const PostActions = ({ id }) => {
   const { posts, onFormSubmit } = useContext(PostsContext);
@@ -33,19 +34,24 @@ const PostActions = ({ id }) => {
         <button className="btn btn-primary mr-2" onClick={formEdit}>
           {form ? "Hide" : "Show"} Edit
         </button>
-        <button
-          className="btn btn-danger"
-          onClick={() => {
-            handlerClickDelete(id);
-          }}
-          disabled={form}
-        >
-          Delete
-        </button>
       </div>
-      <Bounce right when={form}>
-        {form && <PostSmallForm id={id} handleForm={handleForm} />}
-      </Bounce>
+      <CSSTransition in={form} timeout={600} classNames="small-form">
+        <div>
+          {form && (
+            <div className="d-flex align-items-start">
+              <PostSmallForm id={id} handleForm={handleForm} />
+              <button
+                className="btn btn-danger ml-2"
+                onClick={() => {
+                  handlerClickDelete(id);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          )}
+        </div>
+      </CSSTransition>
     </div>
   );
 };
